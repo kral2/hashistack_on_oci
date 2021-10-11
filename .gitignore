@@ -1,0 +1,17 @@
+terraform.tfvars
+.terraform
+*.tfstate
+*.tfstate.backup
+*.lock
+
+**/ssh_authorized_keys.txt
+
+.DS_Store
+.vscode
+
+packer-manifest.json
+
+*pkrvars.hcl
+
+hosts.ini
+all

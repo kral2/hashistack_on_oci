@@ -1,0 +1,63 @@
+---
+
+- name: 2. Install the software | Nomad
+  hosts: all
+  gather_facts: True
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Create Nomad directories if they do not exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0740'
+      with_items:
+      - /opt/nomad
+      - /etc/nomad.d
+      tags: global
+
+    - name: Nomad service
+      ansible.builtin.copy:
+        src: ../../files/nomad.service
+        dest: /etc/systemd/system/nomad.service
+        owner: root
+        group: root
+        mode: '0660'
+
+    - name: Configuration files
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /etc/nomad.d/
+        mode: '700'
+      with_items:
+      - ../../files/nomad.hcl
+      - ../../files/server.hcl
+      - ../../files/client.hcl
+
+    - name: Configure firewalld | allow 4647/tcp inbound
+      firewalld:
+        port: 4647/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | allow 4648/tcp inbound
+      firewalld:
+        port: 4648/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | allow 4648/udp inbound
+      firewalld:
+        port: 4648/udp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+
+...

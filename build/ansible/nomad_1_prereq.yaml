@@ -1,0 +1,20 @@
+---
+
+- name: 1. Prepare the Operating System | nomad environment
+  hosts: all
+  gather_facts: True
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Ensure base packages are present
+      ansible.builtin.yum:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - git
+        - graalvm21-ee-11.aarch64
+      tags: global
+
+...

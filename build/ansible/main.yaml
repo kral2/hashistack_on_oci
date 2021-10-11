@@ -1,0 +1,10 @@
+---
+
+# This playbook install a HashiCorp nomad node
+
+- name: Install nomad Prereqs
+  import_playbook: nomad_1_prereq.yaml
+
+- name: Install nomad
+  import_playbook: nomad_2_install.yaml
+...
