@@ -1,4 +1,12 @@
-# IACBOX
+# HashiStack on OCI
+
+## Build, Provision and Run a 3-nodes Nomad cluster on OCI "Always-Free" Tier
+
+[![release](https://img.shields.io/github/v/release/kral2/hashistack_on_oci?colorB=2067b8)](https://github.com/kral2/hashistack_on_oci)
+[![hcl](https://img.shields.io/badge/language-hcl-89e051.svg?style=flat-square)](https://github.com/kral2/hashistack_on_oci)
+[![bash](https://img.shields.io/badge/language-bash-89e051.svg?style=flat-square)](https://github.com/kral2/hashistack_on_oci)
+[![bash](https://img.shields.io/badge/language-ansible-89e051.svg?style=flat-square)](https://github.com/kral2/hashistack_on_oci)
+[![license](https://img.shields.io/github/license/kral2/hashistack_on_oci?colorB=2067b8)](https://github.com/kral2/hashistack_on_oci)
 
 ## Table of Contents
 
@@ -10,7 +18,13 @@
 
 ## About
 
-This module build an HashiStack demo on OCI.
+This module build an HashiStack demo on OCI. It is a 3-step workflow:
+
+1. BUILD, using Packer, Ansible, Bash scripts. The output is a Custom Image ready to deploy Nomad nodes on Linux/aarch
+2. PROVISION using Terraform Registry, Terraform Cloud, OCI. The output is an OCI Networking structure and security rules, together with 3 Computes Instances and a bastion host
+3. RUN : Nomad on a 3-nodes cluster, with some example jobs to come
+
+![diagram](https://github.com/kral2/hashistack_on_oci/blob/main/files/3-Steps_workflow.png?raw=true&sanitize=true)
 
 <!-- BEGIN_TF_DOCS -->
 
