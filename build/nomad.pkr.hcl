@@ -49,7 +49,7 @@ build {
   sources = ["source.oracle-oci.custom_image"]
 
   provisioner "shell" {
-    scripts = ["../files/download_hashistack.sh"]
+    scripts = ["../_files/download_hashistack.sh"]
   }
 
   provisioner "ansible" {
@@ -58,7 +58,7 @@ build {
   }
 
   provisioner "shell" {
-    scripts = ["../files/install_docker_ol7.sh"]
+    scripts = ["../_files/install_docker_ol7.sh"]
   }
 
   post-processor "manifest" {

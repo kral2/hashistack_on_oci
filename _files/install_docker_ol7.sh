@@ -4,6 +4,10 @@
 # Author: cetin.ardal@oracle.com
 # Description: Install Docker Engine and cli on an Oracle Linux 7 instance running on OCI.
 
+# OL7 repos contains old Docker version (19.xx), so we retrieve the packages from CentOS yum repo.
+# OL8 have dropped support for Docker Engine and moved to Podman.
+# As Nomad's Podman driver gains maturity, we may consider switching to OL8 with Podman as the container engine.
+
 # Get OS Release number
 OS_RELEASE=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
 OS_RELEASE_MAJOR=$(echo $OS_RELEASE | cut -d. -f1)

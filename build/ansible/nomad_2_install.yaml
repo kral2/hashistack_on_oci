@@ -7,35 +7,44 @@
   become_user: root
 
   tasks:
-    - name: Create Nomad directories if they do not exist
+    - name: Ensure Nomad directories are present
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
-        mode: '0740'
+        mode: '0755'
       with_items:
       - /opt/nomad
       - /etc/nomad.d
       tags: global
 
-    - name: Nomad service
+    - name: Ebsure Nomad service unit file is present
       ansible.builtin.copy:
-        src: ../../files/nomad.service
+        src: ../../_files/nomad_config/nomad.service
         dest: /etc/systemd/system/nomad.service
         owner: root
         group: root
-        mode: '0660'
+        mode: '0665'
 
-    - name: Configuration files
+    - name: Ensure Nomad Configuration files are present
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: /etc/nomad.d/
-        mode: '700'
+        mode: '744'
       with_items:
-      - ../../files/nomad.hcl
-      - ../../files/server.hcl
-      - ../../files/client.hcl
+      - ../../_files/nomad_config/nomad.hcl
+      - ../../_files/nomad_config/server.hcl
+      - ../../_files/nomad_config/client.hcl
 
-    - name: Configure firewalld | allow 4647/tcp inbound
+    - name: Ensure Nomad Demo files are present
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /home/opc
+        mode: '744'
+      with_items:
+      - ../../run/bff_nomad_consul.sh
+      - ../../run/nginx-consul.nomad
+
+    - name: Configure firewalld | Nomad RPC (Client)
       firewalld:
         port: 4647/tcp
         permanent: yes
@@ -43,7 +52,7 @@
         state: enabled
       become: yes
       become_user: root
-    - name: Configure firewalld | allow 4648/tcp inbound
+    - name: Configure firewalld | Nomad GOSSIP /tcp (Server)
       firewalld:
         port: 4648/tcp
         permanent: yes
@@ -51,7 +60,7 @@
         state: enabled
       become: yes
       become_user: root
-    - name: Configure firewalld | allow 4648/udp inbound
+    - name: Configure firewalld | Nomad GOSSIP /udp (Server)
       firewalld:
         port: 4648/udp
         permanent: yes
@@ -59,5 +68,12 @@
         state: enabled
       become: yes
       become_user: root
-
+    - name: Configure firewalld | Consul UI
+      firewalld:
+        port: 8500/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
 ...
