@@ -24,7 +24,7 @@ This module build an HashiStack demo on OCI. It is a 3-step workflow:
 2. PROVISION using Terraform Registry, Terraform Cloud, OCI. The output is an OCI Networking structure and security rules, together with 3 Computes Instances and a bastion host
 3. RUN : Nomad on a 3-nodes cluster, with some example jobs to come
 
-![diagram](https://github.com/kral2/hashistack_on_oci/blob/main/files/3-Steps_workflow.png?raw=true&sanitize=true)
+![diagram](https://github.com/kral2/hashistack_on_oci/blob/main/_files/3-Steps_workflow.png?raw=true&sanitize=true)
 
 <!-- BEGIN_TF_DOCS -->
 
