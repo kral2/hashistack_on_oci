@@ -1,6 +1,6 @@
 # HashiStack on OCI
 
-## Build, Provision and Run a 3-nodes Nomad cluster on OCI "Always-Free" Tier
+## Build, Provision and Run a 3-nodes Consul+Nomad cluster on OCI "Always-Free" Tier
 
 [![release](https://img.shields.io/github/v/release/kral2/hashistack_on_oci?colorB=2067b8)](https://github.com/kral2/hashistack_on_oci)
 [![hcl](https://img.shields.io/badge/language-hcl-89e051.svg?style=flat-square)](https://github.com/kral2/hashistack_on_oci)
@@ -21,3 +21,29 @@ This project build an "HashiStack" demo on [OCI](https://docs.oracle.com/en-us/i
 Details about the provisioned infrastructure can be found in the ["Provision" folder](https://github.com/kral2/hashistack_on_oci/tree/main/provision) of this repo.
 
 The whole architecure deployed by this project can be contained in the [Oracle Cloud Always Free tier](https://www.oracle.com/cloud/free/) allocation, which comes with Compute, Storage, the cloud networking stuff and a hefty 10TB Outbound Data Transfer per month. So it should not cost you a single penny to try :-D
+
+## How to use this?
+
+First, you will need to build your custom image
+
+``` shell
+> cd build
+> packer build .
+```
+
+Once your Custom image is built, let's provision it
+
+``` shell
+> cd ../provision
+> terraform init
+> terraform plan
+> terraform apply
+```
+
+Once you are connected to your cluster nodes through the bastion, you can verify that both Consul and Nomad clusters are up & runnning.
+
+``` shell
+> cd ../run
+> nomad server members
+> consul members
+```
