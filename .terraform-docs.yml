@@ -20,7 +20,7 @@ content: |-
   {{ .Footer }}
 
 output:
-  file: "../README.md"
+  file: "README.md"
   mode: inject
 
 output-values:

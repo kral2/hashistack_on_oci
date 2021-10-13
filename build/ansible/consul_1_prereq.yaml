@@ -1,6 +1,6 @@
 ---
 
-- name: 1. Prepare the Operating System | nomad environment
+- name: 1. Prepare the Operating System | consul environment
   hosts: all
   gather_facts: True
   become: yes
@@ -15,8 +15,12 @@
         packages:
         - git
         - tree
-        - docker-ce
-        - graalvm21-ee-11.aarch64
       tags: global
 
+    - name: Ensure service user is present
+      ansible.builtin.user:
+        name: consul
+        comment: 'consul - Ansibled'
+        state: present
+      tags: global, user
 ...

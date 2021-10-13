@@ -17,13 +17,15 @@
       - /etc/nomad.d
       tags: global
 
-    - name: Ebsure Nomad service unit file is present
+    - name: Ensure Nomad service unit file is present
       ansible.builtin.copy:
         src: ../../_files/nomad_config/nomad.service
         dest: /etc/systemd/system/nomad.service
         owner: root
         group: root
-        mode: '0665'
+        mode: '0664'
+    - name: Ensure Nomad service is enabled
+      ansible.builtin.shell: systemctl enable nomad
 
     - name: Ensure Nomad Configuration files are present
       ansible.builtin.copy:

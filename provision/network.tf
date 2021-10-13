@@ -47,5 +47,5 @@ resource "oci_core_subnet" "vcn_hashistack_private" {
   dns_label                  = "private"
   prohibit_public_ip_on_vnic = true
   route_table_id             = module.vcn_hashistack.nat_route_id
-  security_list_ids          = [module.vcn_hashistack.vcn_all_attributes.default_security_list_id, oci_core_security_list.nomad_servers.id]
+  security_list_ids          = [module.vcn_hashistack.vcn_all_attributes.default_security_list_id, oci_core_security_list.nomad_servers.id, oci_core_security_list.consul_servers.id]
 }

@@ -2,9 +2,9 @@
 
 # This playbook install a HashiCorp nomad node
 
-- name: Install nomad Prereqs
-  import_playbook: nomad_1_prereq.yaml
+- name: Run Consul playbooks
+  import_playbook: main_consul.yaml
 
-- name: Install nomad
-  import_playbook: nomad_2_install.yaml
+- name: Run Nomad Prereqs
+  import_playbook: main_nomad.yaml
 ...

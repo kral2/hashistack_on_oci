@@ -1,0 +1,13 @@
+---
+
+- name: 3. Start service | nomad
+  hosts: all
+  gather_facts: True
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Execute collect_sar_info.sh on remote targets
+      ansible.builtin.shell: systemctl restart nomad
+
+...

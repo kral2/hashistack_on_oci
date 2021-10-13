@@ -10,6 +10,20 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
+## [0.2.0] - 2021-10-13
+
+### Added
+
+- Consul Cluster : the compute instances that run the Nomad cluster now also run a 3-node Consul cluster.
+- Terraform provisioning update: a new VCN Security List for Consul
+- New playbook to restart Consul or Nomad services on running clusters
+
+### Changed
+
+- Nomad and Consul systemd service units are now in state enabled at the build stage.
+- Use [go-sockaddr](https://github.com/hashicorp/go-sockaddr) template on consul_config/server.hcl to determine the node IP address at launch time and not hard coded in the Packer build image.
+- hashistack-installer is now pinned to a tag version for more deterministic output
+
 ## [0.1.0] - 2021-10-11
 
 Initial release. Deploys the infrastructure required to run an HashiStack demo on OCI.

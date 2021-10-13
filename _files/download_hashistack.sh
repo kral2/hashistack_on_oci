@@ -7,6 +7,6 @@
 # If/when https://iac.sh evovles to support the installation of HashiCorp products other than Terraform and Packer,
 # we may switch to it instead of my current installer.
 
-curl -LO https://raw.github.com/kral2/hashistack-installer/main/hashistack-install.sh
+curl -LO https://raw.githubusercontent.com/kral2/hashistack-installer/v0.3.1/hashistack-install.sh
 chmod +x hashistack-install.sh
 ./hashistack-install.sh consul vault nomad

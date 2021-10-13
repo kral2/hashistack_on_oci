@@ -1,8 +1,22 @@
-terraform.tfvars
-.terraform
+# Compiled files
 *.tfstate
 *.tfstate.backup
+*.tfstate.lock.info
 *.lock
+
+# Directories
+.terraform
+ignored
+
+# Ignored files
+*gitignore*.tf
+terraform.tfvars
+provision/compute_instance_image_source_ocid.auto.tfvars
+*pkrvars.hcl
+
+# Ignored Ansible files
+hosts.ini
+all
 
 **/ssh_authorized_keys.txt
 
@@ -11,9 +25,9 @@ terraform.tfvars
 
 packer-manifest.json
 
-*pkrvars.hcl
 
-hosts.ini
-all
 
-ignored
+
+
+
+

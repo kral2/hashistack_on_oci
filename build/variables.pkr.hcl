@@ -40,7 +40,7 @@ locals {
   default_freeform_tags = {
     # This list of freeform tags are added by default, on build resources and build artefacts
     Terraformed             = "No"
-    Packer_Template_version = "v1.1"
+    Packer_Template_version = "v2.0"
   }
   merged_image_freeform_tags    = merge(local.default_freeform_tags, var.image_watermark_freeform_tags, var.image_user_freeform_tags, var.base_image_filter)
   merged_instance_freeform_tags = merge(local.default_freeform_tags, var.instance_watermark_freeform_tags, var.instance_user_freeform_tags)
@@ -84,7 +84,7 @@ variable "instance_user_freeform_tags" {
   type        = map(string)
   description = "Add one or more freeform tags to the instance used for the image creation process."
   default = {
-    version = "0.3.0"
+    version = "0.1.0"
   }
 }
 
@@ -136,7 +136,7 @@ variable "base_image_filter" {
 variable "image_name" {
   type        = string
   description = "The name to assign to the resulting custom image."
-  default     = "oicagent"
+  default     = "hashipacked"
 }
 
 variable "image_compartment_ocid" {

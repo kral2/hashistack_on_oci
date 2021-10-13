@@ -1,0 +1,10 @@
+---
+
+# This playbook install a HashiCorp consul node
+
+- name: Install consul Prereqs
+  import_playbook: consul_1_prereq.yaml
+
+- name: Install consul
+  import_playbook: consul_2_install.yaml
+...

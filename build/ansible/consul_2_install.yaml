@@ -1,0 +1,97 @@
+---
+
+- name: 2. Install the software | Consul
+  hosts: all
+  gather_facts: True
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Ensure Consul directories are present
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+        owner: consul
+        group: consul
+      with_items:
+      - /opt/consul
+      - /etc/consul.d
+      tags: global
+
+    - name: Ensure Consul service unit file is present
+      ansible.builtin.copy:
+        src: ../../_files/consul_config/consul.service
+        dest: /etc/systemd/system/consul.service
+        owner: root
+        group: root
+        mode: '0664'
+    - name: Ensure Consul service is enabled
+      ansible.builtin.shell: systemctl enable consul
+
+    - name: Ensure Consul Configuration files are present
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /etc/consul.d/
+        mode: '744'
+      with_items:
+      - ../../_files/consul_config/consul.hcl
+      - ../../_files/consul_config/server.hcl
+
+    - name: Configure firewalld | Consul RPC (Client)
+      firewalld:
+        port: 8300/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | Consul GOSSIP /tcp (Serf LAN)
+      firewalld:
+        port: 8301/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | Consul GOSSIP /udp (Serf LAN)
+      firewalld:
+        port: 8301/udp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | Consul GOSSIP /tcp (Serf WAN)
+      firewalld:
+        port: 8302/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | Consul GOSSIP /udp (Serf WAN)
+      firewalld:
+        port: 8302/udp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | Consul HTTP API
+      firewalld:
+        port: 8500/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+    - name: Configure firewalld | Consul DNS Interface
+      firewalld:
+        port: 8600/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+      become: yes
+      become_user: root
+...

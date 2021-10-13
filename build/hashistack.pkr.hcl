@@ -45,20 +45,19 @@ source "oracle-oci" "custom_image" {
 }
 
 build {
-  name    = "nomad"
+  name    = "consul_nomad"
   sources = ["source.oracle-oci.custom_image"]
+
+  provisioner "shell" {
+    scripts = ["../_files/install_docker_ol7.sh"]
+  }
 
   provisioner "shell" {
     scripts = ["../_files/download_hashistack.sh"]
   }
 
   provisioner "ansible" {
-    # extra_arguments = ["--vault-id", "oicagent_hrfin@/Users/kral2/code/ansible/tvg/oicagent/password_file"]
     playbook_file = "ansible/main.yaml"
-  }
-
-  provisioner "shell" {
-    scripts = ["../_files/install_docker_ol7.sh"]
   }
 
   post-processor "manifest" {
