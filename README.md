@@ -8,14 +8,6 @@
 [![bash](https://img.shields.io/badge/language-ansible-89e051.svg?style=flat-square)](https://github.com/kral2/hashistack_on_oci)
 [![license](https://img.shields.io/github/license/kral2/hashistack_on_oci?colorB=2067b8)](https://github.com/kral2/hashistack_on_oci)
 
-## Table of Contents
-
-1. [About](#about)
-2. [Requirements](#requirements)
-3. [Providers](#Providers)
-4. [Inputs](#inputs)
-5. [Outputs](#outputs)
-
 ## About
 
 This project build an "HashiStack" demo on [OCI](https://docs.oracle.com/en-us/iaas/Content/home.htm). It is a 3-step workflow:
