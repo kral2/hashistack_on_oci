@@ -1,0 +1,41 @@
+---
+
+# This playbook apply OS level generic configuration
+
+- name: OS level generinc configuration
+  hosts: all
+  gather_facts: True
+  become: yes
+  become_user: root
+
+  vars:
+    version: 0.2.0
+
+  tasks:
+    - name: Ensure base packages are present
+      ansible.builtin.yum:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - git
+        - tree
+      tags: global
+    - name: setlocale LANG
+      ansible.builtin.lineinfile:
+        path: /etc/environment
+        regexp: '^LANG='
+        line: LANG=en_US.utf-8
+    - name: setlocale LC_TYPE
+      ansible.builtin.lineinfile:
+        path: /etc/environment
+        regexp: '^LC_ALL='
+        line: LC_ALL=en_US.utf-8
+    - name: Custom MOTD
+      ansible.builtin.template:
+        src: ../../_files/os/motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0664'
+...

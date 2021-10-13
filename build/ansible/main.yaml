@@ -2,6 +2,9 @@
 
 # This playbook install a HashiCorp nomad node
 
+- name: Run OS config playbooks
+  import_playbook: os_prep.yaml
+
 - name: Run Consul playbooks
   import_playbook: main_consul.yaml
 

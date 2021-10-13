@@ -3,7 +3,7 @@
 set -e
 
 # Terminal rapid start.
-# Only works on macOS
+# Only works on macOS with iTerm installed. Sorry, but not sorry ¯\_(ツ)_/¯
 [ `uname -s` != "Darwin" ] && return
 
 # open additional terminal shells

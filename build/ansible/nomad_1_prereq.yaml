@@ -13,8 +13,6 @@
         state: present
       vars:
         packages:
-        - git
-        - tree
         - docker-ce
         - graalvm21-ee-11.aarch64
       tags: global

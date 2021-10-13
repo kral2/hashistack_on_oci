@@ -7,16 +7,6 @@
   become_user: root
 
   tasks:
-    - name: Ensure base packages are present
-      ansible.builtin.yum:
-        name: "{{ packages }}"
-        state: present
-      vars:
-        packages:
-        - git
-        - tree
-      tags: global
-
     - name: Ensure service user is present
       ansible.builtin.user:
         name: consul
