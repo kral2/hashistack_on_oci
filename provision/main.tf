@@ -9,8 +9,8 @@ locals {
 }
 
 module "instance_hashistack" {
-  source  = "oracle-terraform-modules/compute-instance/oci"
-  version = "2.2.0"
+  source  = "kral2/compute-instance/oci"
+  version = "2.3.0-RC1"
 
   # general oci parameters
   compartment_ocid = var.compartment_id
@@ -19,6 +19,7 @@ module "instance_hashistack" {
   ad_number                   = var.instance_ad_number
   instance_count              = var.instance_count
   instance_display_name       = var.instance_display_name
+  instance_state              = var.instance_state
   shape                       = var.shape
   source_ocid                 = var.source_ocid
   source_type                 = var.source_type
@@ -34,8 +35,8 @@ module "instance_hashistack" {
 }
 
 module "instance_bastion" {
-  source  = "oracle-terraform-modules/compute-instance/oci"
-  version = "2.2.0"
+  source  = "kral2/compute-instance/oci"
+  version = "2.3.0-RC1"
 
   # general oci parameters
   compartment_ocid = var.compartment_id
@@ -44,6 +45,7 @@ module "instance_bastion" {
   ad_number                   = var.instance_ad_number
   instance_count              = 1
   instance_display_name       = "stack_bastion"
+  instance_state              = var.instance_state
   shape                       = "VM.Standard.E2.1.Micro"
   source_ocid                 = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaaw6q7whpy3hkxhimt4hxwcdmc6wnh7wkcz55yervlx5x55yg6xklq" # Oracle-Autonomous-Linux-7.9-2021.09-1
   source_type                 = var.source_type

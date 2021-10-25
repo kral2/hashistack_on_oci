@@ -10,6 +10,20 @@ Given a version number MAJOR.MINOR.PATCH:
 - MINOR version when adding functionality in a backwards compatible manner,
 - PATCH version when making backwards compatible bug fixes.
 
+## [0.3.0] - unreleased
+
+### Added
+
+- Compute Instances state control can be RUNNING or STOPPED (Cluster nodes and Bastion)
+
+### Changed
+
+- use development compute-instance module from kral2/compute-instance/oci in place of oracle-terraform-modules/compute-instance/oci
+
+### Fixed
+
+- Packer: `image_compartment_ocid` variable input is now honored, instead of placing Image in the same compartment than the build instance
+
 ## [0.2.0] - 2021-10-13
 
 ### Added

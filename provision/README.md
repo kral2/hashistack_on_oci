@@ -29,8 +29,8 @@ This Terraform template provision the infrastructure below:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_instance_bastion"></a> [instance\_bastion](#module\_instance\_bastion) | oracle-terraform-modules/compute-instance/oci | 2.2.0 |
-| <a name="module_instance_hashistack"></a> [instance\_hashistack](#module\_instance\_hashistack) | oracle-terraform-modules/compute-instance/oci | 2.2.0 |
+| <a name="module_instance_bastion"></a> [instance\_bastion](#module\_instance\_bastion) | kral2/compute-instance/oci | 2.3.0-RC1 |
+| <a name="module_instance_hashistack"></a> [instance\_hashistack](#module\_instance\_hashistack) | kral2/compute-instance/oci | 2.3.0-RC1 |
 | <a name="module_vcn_hashistack"></a> [vcn\_hashistack](#module\_vcn\_hashistack) | oracle-terraform-modules/vcn/oci | 3.0.0 |
 ## Resources
 
@@ -54,6 +54,7 @@ This Terraform template provision the infrastructure below:
 | <a name="input_instance_display_name"></a> [instance\_display\_name](#input\_instance\_display\_name) | (Updatable) A user-friendly name for the instance. Does not have to be unique, and it's changeable. | `string` | `"instance-module"` | no |
 | <a name="input_instance_flex_memory_in_gbs"></a> [instance\_flex\_memory\_in\_gbs](#input\_instance\_flex\_memory\_in\_gbs) | (Updatable) The total amount of memory available to the instance, in gigabytes. | `number` | `6` | no |
 | <a name="input_instance_flex_ocpus"></a> [instance\_flex\_ocpus](#input\_instance\_flex\_ocpus) | (Updatable) The total number of OCPUs available to the instance. | `number` | `1` | no |
+| <a name="input_instance_state"></a> [instance\_state](#input\_instance\_state) | (Updatable) The target state for the instance. Could be set to RUNNING or STOPPED. | `string` | `"RUNNING"` | no |
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | n/a | `string` | `null` | no |
 | <a name="input_private_key_path"></a> [private\_key\_path](#input\_private\_key\_path) | n/a | `string` | `null` | no |
 | <a name="input_public_ip"></a> [public\_ip](#input\_public\_ip) | Whether to create a Public IP to attach to primary vnic and which lifetime. Valid values are NONE, RESERVED or EPHEMERAL. | `string` | `"RESERVED"` | no |

@@ -39,9 +39,10 @@ source "oracle-oci" "custom_image" {
     operating_system         = var.base_image_filter["operating_system"]
     operating_system_version = var.base_image_filter["operating_system_version"]
   }
-  image_name        = "${var.image_name}_v${var.image_user_freeform_tags["version"]}"
-  tags              = local.merged_image_freeform_tags
-  defined_tags_json = jsonencode(var.image_user_defined_tags)
+  image_name             = "${var.image_name}_v${var.image_user_freeform_tags["version"]}"
+  image_compartment_ocid = var.image_compartment_ocid
+  tags                   = local.merged_image_freeform_tags
+  defined_tags_json      = jsonencode(var.image_user_defined_tags)
 }
 
 build {
